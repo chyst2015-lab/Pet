@@ -1,0 +1,403 @@
+/* ----- RESET & БАЗА ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Inter', 'Montserrat', sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(circle at 20% 30%, #FFB347, #FF8C00, #F28500);
+    /* анимированный градиентный фон (переливающийся) */
+    background-size: 200% 200%;
+    animation: gradientFlow 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1.5rem;
+}
+
+/* Анимация движения градиента */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+        background-image: radial-gradient(circle at 30% 40%, #FFB347, #FF8C00, #F57C00);
+    }
+    50% {
+        background-position: 100% 50%;
+        background-image: radial-gradient(circle at 70% 60%, #FFA559, #FF7E05, #E06E00);
+    }
+    100% {
+        background-position: 0% 50%;
+        background-image: radial-gradient(circle at 30% 40%, #FFB347, #FF8C00, #F57C00);
+    }
+}
+
+/* карточка-контейнер */
+.pet-card {
+    max-width: 1300px;
+    width: 100%;
+    background: rgba(255, 248, 235, 0.92);
+    backdrop-filter: blur(2px);
+    border-radius: 64px 48px 72px 56px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s;
+}
+
+.pet-card:hover {
+    box-shadow: 0 35px 55px -15px rgba(0, 0, 0, 0.4);
+}
+
+/* внутренние отступы */
+.content {
+    padding: 2.2rem 2.5rem 2.8rem;
+}
+
+/* заголовок с именем и эмодзи */
+.hero {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+    border-bottom: 3px dashed #FFB85E;
+    padding-bottom: 1rem;
+}
+
+.name-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.name-tag h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #C95A0F, #FF8C42);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.wave {
+    font-size: 3rem;
+    display: inline-block;
+    animation: waveAnim 1.5s infinite;
+    transform-origin: 70% 70%;
+}
+
+@keyframes waveAnim {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(14deg); }
+    40% { transform: rotate(-8deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.age-badge {
+    background: #FFE0B5;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-weight: 600;
+    color: #B75A1A;
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* главный блок: фото + описание */
+.profile-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.photo-area {
+    flex: 1.2;
+    min-width: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-frame {
+    background: #FFD7A5;
+    border-radius: 58px;
+    padding: 12px;
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+/* ГЛАВНОЕ: анимация на картинку — увеличение, яркость, покачивание */
+.pet-photo {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    border-radius: 48px;
+    display: block;
+    margin: 0 auto;
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+/* Эффект на наведение: увеличение + яркость + легкое покачивание */
+.pet-photo:hover {
+    transform: scale(1.07) rotate(1deg);
+    filter: brightness(1.12) contrast(1.05);
+    box-shadow: 0 25px 35px -8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, filter 0.2s, box-shadow 0.2s;
+}
+
+.description-area {
+    flex: 2;
+    background: rgba(255, 245, 230, 0.7);
+    border-radius: 48px;
+    padding: 1.2rem 1.8rem;
+    backdrop-filter: blur(4px);
+}
+
+.intro-text {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #4A2A12;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+}
+
+.intro-text strong {
+    color: #E06E00;
+    font-weight: 800;
+}
+
+.slipper-icon-small {
+    display: inline-block;
+    animation: slightSwing 1.5s infinite ease;
+    font-size: 1.3rem;
+}
+
+/* секция навыков */
+.skills-section {
+    margin-top: 1.8rem;
+}
+
+.skills-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #BD5F1A;
+    border-left: 8px solid #FF9F4A;
+    padding-left: 18px;
+    margin-bottom: 1.2rem;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.skill-category {
+    background: white;
+    border-radius: 32px;
+    padding: 0.8rem 1.4rem;
+    flex: 1 1 180px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.skill-category:hover {
+    transform: translateY(-4px);
+    background: #FFF4E6;
+}
+
+.cat-title {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #D96C0A;
+    border-bottom: 2px dotted #FFCD94;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.command-list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.command-list li {
+    display: inline-block;
+    background: #FFF1E2;
+    padding: 4px 12px;
+    border-radius: 40px;
+    margin: 4px 6px 4px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #78471E;
+}
+
+.soft-toy-note {
+    font-size: 0.7rem;
+    margin-top: 6px;
+    color: #B45A2A;
+}
+
+/* Особенная секция с тапочком */
+.favorite-block {
+    background: linear-gradient(115deg, #FFE3BF, #FFD19B);
+    margin: 1.8rem 0 1rem;
+    padding: 1.2rem 1.8rem;
+    border-radius: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.favorite-text {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #934E18;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.star-badge {
+    background: white;
+    border-radius: 60px;
+    padding: 6px 12px;
+    font-size: 1rem;
+}
+
+.slipper-icon {
+    font-size: 2.2rem;
+    animation: slightSwing 2s infinite ease;
+    display: inline-block;
+}
+
+@keyframes slightSwing {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(8deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.quote {
+    font-style: italic;
+    font-weight: 500;
+    color: #6A3E15;
+}
+
+/* галерея доп. картинок */
+.gallery-section {
+    margin-top: 2rem;
+}
+
+.gallery-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #B25512;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.gallery-item {
+    background: #FFF2E2;
+    border-radius: 32px;
+    padding: 12px;
+    transition: all 0.25s;
+    width: 180px;
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* анимация для картинок галереи: увеличение + яркость/покачивание */
+.gallery-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 24px;
+    display: block;
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.4, 1.1);
+    cursor: pointer;
+    background: #FAD9A8;
+}
+
+.gallery-img:hover {
+    transform: scale(1.08) rotate(1deg);
+    filter: brightness(1.1) contrast(1.05);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+}
+
+.gallery-caption {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #995E28;
+    font-size: 0.85rem;
+}
+
+/* подвал */
+.footer-note {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #CA711F;
+    font-weight: 500;
+    border-top: 1px solid #FFD7AE;
+    padding-top: 1.3rem;
+}
+
+.paw-print {
+    text-align: right;
+    font-size: 1.8rem;
+    opacity: 0.7;
+    margin-top: 0.5rem;
+}
+
+/* адаптивность */
+@media (max-width: 800px) {
+    .content {
+        padding: 1.5rem;
+    }
+    .name-tag h1 {
+        font-size: 2.2rem;
+    }
+    .profile-grid {
+        flex-direction: column;
+    }
+    .skills-grid {
+        flex-direction: column;
+    }
+    .gallery-item {
+        width: 150px;
+    }
+    .gallery-img {
+        height: 130px;
+    }
+}
+
+@media (max-width: 550px) {
+    .favorite-block {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .skill-category {
+        flex: auto;
+    }
+}
